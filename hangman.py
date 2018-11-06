@@ -1,4 +1,3 @@
-//useless
 import random
 hangman_parts = [ "head", "left arm", "torso", "right arm", "left leg", "right leg" ]
 num_wrong_guesses_allowed = len(hangman_parts)
