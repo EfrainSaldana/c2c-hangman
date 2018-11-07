@@ -1,5 +1,4 @@
 import random
-import string
 
 hangman_parts = [ "head", "left arm", "torso", "right arm", "left leg", "right leg" ]
 num_wrong_guesses_allowed = len(hangman_parts)
@@ -28,7 +27,7 @@ def draw_hangman(num_wrong_guesses):
         num_wrong_guesses = num_wrong_guesses_allowed
 
     hangman_characters = {
-        "head" : "  ☺",
+        "head" : "  ☻",
         "left arm" : " /",
         "torso" : "|",
         "right arm" : "\\",
@@ -48,8 +47,23 @@ def draw_hangman(num_wrong_guesses):
         output = output + "\n |"
     output = output + "____\n\n"
     print(output)
+
 def duplicate (lst, value):
     return [i for i, v in enumerate(lst) if v == value]
+
+def answer_to_question(guess):
+    draw_hangman(len(wrong_guesses))
+    print (dashes)
+    print("")
+    if (guess in word):
+        print ("This is in the word! ")
+    if (guess not in word):
+        print ("Awe man, try again! ")
+    print("")
+    print("Right guesses:" +str(right_guesses))
+    print ("Wrong guesses: " + str(wrong_guesses))
+    print("")
+
 
 complete = False
 while (not complete):
@@ -72,7 +86,7 @@ while (not complete):
         gamewin = len(character_list) == len(right_guesses)
         if(gamewin):
             print ("You won!")
-            answer = input("Would you like to play again?").lower()
+            answer = input("Would you like to play again? ").lower()
             if (answer == "no"):
                 done = True
                 complete = True
@@ -96,7 +110,6 @@ while (not complete):
                 break
             else:
                 print("Please reread the question (:")
-
         while (firstRun == 0):
             draw_hangman(len(wrong_guesses))
             print(dashes)
@@ -113,26 +126,15 @@ while (not complete):
                 counter = duplicate(wordList, guess)
                 for x in counter:
                     dashes[x] = guess
-                draw_hangman(len(wrong_guesses))
-                print(dashes)
-                print ("")
-                print("This letter works!")
-                print("Right guesses:" + str(right_guesses))
-                print ("Wrong guesses: " + str(wrong_guesses))
-                print("")
+                answer_to_question(guess)
                 continue
             else:
-                    if guess in wrong_guesses:
-                        print("You already tried this!")
-                        print("Please choose another letter")
-                        continue
-                    wrong_guesses.append(guess)
-                    draw_hangman(len(wrong_guesses))
-                    print (dashes)
-                    print("")
-                    print("Right guesses:" + str(right_guesses))
-                    print ("Wrong guesses: " + str(wrong_guesses))
-                    print("")
+                if guess in wrong_guesses:
+                    print("You already tried this!")
+                    print("Please choose another letter")
                     continue
+                wrong_guesses.append(guess)
+                answer_to_question(guess)
+                continue
         else:
             print("Please type a single letter :)")
