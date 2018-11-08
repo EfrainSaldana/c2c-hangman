@@ -1,4 +1,6 @@
 import random
+import os
+import time
 
 hangman_parts = [ "head", "left arm", "torso", "right arm", "left leg", "right leg" ]
 num_wrong_guesses_allowed = len(hangman_parts)
@@ -52,6 +54,8 @@ def duplicate (lst, value):
     return [i for i, v in enumerate(lst) if v == value]
 
 def answer_to_question(guess):
+    time.sleep(.010)
+    os.system('cls')
     draw_hangman(len(wrong_guesses))
     print (dashes)
     print("")
@@ -86,7 +90,7 @@ while (not complete):
         gamewin = len(character_list) == len(right_guesses)
         if(gamewin):
             print ("You won!")
-            answer = input("Would you like to play again? ").lower()
+            answer = input("Would you like to play again? Yes or No ").lower()
             if (answer == "no"):
                 done = True
                 complete = True
@@ -100,7 +104,7 @@ while (not complete):
             done = True
             print("Game over, sorry")
             print("Just for curisioty, the word was: " + word)
-            answer = input("Would you like to play again? ").lower()
+            answer = input("Would you like to play again? Yes or No ").lower()
             if (answer == "no"):
                 done = True
                 complete = True
