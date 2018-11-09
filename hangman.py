@@ -54,7 +54,7 @@ def duplicate (lst, value):
     return [i for i, v in enumerate(lst) if v == value]
 
 def answer_to_question(guess):
-    time.sleep(.010)
+    time.sleep(.01)
     os.system('cls')
     draw_hangman(len(wrong_guesses))
     print (dashes)
