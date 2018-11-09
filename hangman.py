@@ -97,6 +97,7 @@ while (not complete):
                 break
             elif (answer == "yes"):
                 done = True
+                os.system('cls')
                 break
             else:
                 print("Please reread the question (:")
