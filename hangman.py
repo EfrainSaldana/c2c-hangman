@@ -85,37 +85,52 @@ while (not complete):
     for character in word:
         if character not in character_list:
             character_list.append(character)
+    name = input("Hey there, what's your name? ")
+    print("Oh hey " + name + "! Let's play hangman!")
     while (not done) :
         gameover = ((len(wrong_guesses)+1) > num_wrong_guesses_allowed)
         gamewin = len(character_list) == len(right_guesses)
         if(gamewin):
+            finalAnswer = False
             print ("You won!")
-            answer = input("Would you like to play again? Yes or No ").lower()
-            if (answer == "no"):
-                done = True
-                complete = True
-                break
-            elif (answer == "yes"):
-                done = True
-                os.system('cls')
-                break
-            else:
-                print("Please reread the question (:")
+            print("Great job on guessing " + word)
+            while (not finalAnswer):
+                answer = input("Would you like to play again? Yes or No ").lower()
+                if (answer == "no"):
+                    done = True
+                    complete = True
+                    finalAnswer = True
+                    break
+                elif (answer == "yes"):
+                    done = True
+                    os.system('cls')
+                    finalAnswer = True
+                    break
+                else:
+                    print("Please reread the question (:")
+                    continue
+            break
         if(gameover):
+            finalAnswer = False
             done = True
             print("Game over, sorry")
             print("Just for curisioty, the word was: " + word)
-            answer = input("Would you like to play again? Yes or No ").lower()
-            if (answer == "no"):
-                done = True
-                complete = True
-                break
-            elif (answer == "yes"):
-                done = True
-                os.system('cls')
-                break
-            else:
-                print("Please reread the question (:")
+            while (not finalAnswer):
+                answer = input("Would you like to play again? Yes or No ").lower()
+                if (answer == "no"):
+                    done = True
+                    complete = True
+                    finalAnswer = True
+                    break
+                elif (answer == "yes"):
+                    done = True
+                    os.system('cls')
+                    finalAnswer = True
+                    break
+                else:
+                    print("Please reread the question (:")
+                    continue
+            break
         while (firstRun == 0):
             draw_hangman(len(wrong_guesses))
             print(dashes)
